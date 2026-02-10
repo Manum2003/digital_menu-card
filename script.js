@@ -12,7 +12,7 @@ if (shopOpen) {
 // Menu items
 const menuItems = [
     { name: "Belpuri", price: 40 },
-    { name: "Special Bhel Puri", price: 45 },
+    { name: "Special Bhel Puri", price: 50 },
     { name: "Mango Bhelpuri", price: 50 },
     { name: "Pineapple Bhelpuri", price: 50 },
     { name: "Sevpuri", price: 40 },
@@ -28,16 +28,16 @@ const menuItems = [
     { name: "Chips masala", price: 40 },
     { name: "Time pass masala", price: 40 },
     { name: "Sprouts masala", price: 50 },
-    { name: "Banana stem", price: 40 },
+    { name: "Banana stem masala", price: 40 },
     { name: "Pineapple masala", price: 50 },
     { name: "Cucumber masala", price: 40 },
     { name: "Cumber+pineapple masala", price: 50 },
     { name: "All mix masala", price: 50 },
-    { name: "Sprouts + cucumer masala", price: 50 },
+    { name: "Sprouts masala", price: 50 },
     { name: "Sweet corn masala", price: 50 },
     { name: "Kodbele masala", price: 50 },
     { name: "Nippat masala", price: 40 },
-    { name: "Congress masala", price: 50 },
+    { name: "Congress masala", price: 60 },
     { name: "Moong dal masala", price: 50 }
 ];
 
