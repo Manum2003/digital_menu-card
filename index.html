@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>M MChats Center</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M M Chats Center</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>🌮 M M Chats Center</h1>
+<header>
+    <h1>🌮 M M Chats Center</h1>
+    <div class="info">
+        <div><span class="highlight">Opening Time:</span> 5:00 PM – 10:00 PM</div>
+        <div><span class="highlight">Contact:</span> 8618752739</div>
+    </div>
+</header>
 
-<h2 id="status">Status: </h2>
+<h2 class="menu-title">📋 Digital Menu</h2>
 
-<div class="details">
-    <p><b>📍 Location:</b> global villege back gate ,Kengeri, Bangalore</p>
-    <p><b>🕒 Timings:</b> 4:30 PM – 10:30 PM</p>
-    <p><b>📞 Contact:</b> 8618752739</p>
+<div class="menu" id="menu"></div>
+
+<div class="cart">
+    <h2>zomato and swiggy available</h2>
+    <h3>🛒 Your Order</h3>
+    <div id="cartItems"></div>
+    <div class="total">Total: ₹<span id="total">0</span></div>
 </div>
-
-<h3>📋 Digital Menu</h3>
-
-<table>
-    <tr>
-        <th>Item</th>
-        <th>Price (₹)</th>
-    </tr>
-    <tbody id="menu"></tbody>
-</table>
 
 <script src="script.js"></script>
 </body>
