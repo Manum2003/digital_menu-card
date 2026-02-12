@@ -36,6 +36,8 @@ const menuItems = [
     { name: "Sprouts+ baledindu masala", price: 50 },
     { name: "Sweet corn masala", price: 50 },
     { name: "Kodbele masala", price: 50 },
+    { name: "Bun nippat masala", price: 50 },
+    { name: "Bun pineapple masala", price: 55 },
     { name: "Nippat masala", price: 40 },
     { name: "Congress masala", price: 60 },
     { name: "Moong dal masala", price: 50 }
