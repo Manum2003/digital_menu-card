@@ -4,11 +4,7 @@
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
 }
-@media(max-width:480px){
-    header h1{
-        font-size:22px;
-    }
-}
+
 
 
 /* BACKGROUND IMAGE */
@@ -41,7 +37,7 @@ header{
     border-radius:20px;
 }
 header h1{
-    font-size:30px;
+    font-size:20px;
     font-weight:700;
     color:#00f5a0;
     text-align:center;
