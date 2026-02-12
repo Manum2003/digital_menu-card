@@ -40,12 +40,15 @@ header{
     background:rgba(0,0,0,0.6);
     border-radius:20px;
 }
-
 header h1{
-    font-size:34px;
+    font-size:28px;
     font-weight:700;
     color:#00f5a0;
+    white-space:nowrap;        /* prevents line break */
+    overflow:hidden;
+    text-overflow:ellipsis;    /* shows ... if screen too small */
 }
+
 
 .info{
     margin-top:10px;
