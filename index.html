@@ -1,35 +1,431 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M M Chats Center</title>
+<title>MM Chats Center – Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B00;
+    --deep: #1A0A00;
+    --gold: #FFB300;
+    --cream: #FFF8F0;
+    --green: #2D7A3A;
+    --card-bg: #fff;
+    --shadow: 0 4px 24px rgba(255,107,0,0.10);
+  }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Poppins', sans-serif;
+    color: var(--deep);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF9A00 60%, #FFB300 100%);
+    padding: 36px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .logo-circle {
+    width: 80px; height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    font-size: 2.2rem;
+    animation: pop 0.6s cubic-bezier(.36,1.56,.64,1) both;
+  }
+  @keyframes pop { from { transform: scale(0.4); opacity:0 } to { transform:scale(1); opacity:1 } }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    animation: fadeUp 0.7s 0.2s both;
+  }
+  .hero h1 span { font-style: italic; font-size: 1.1rem; display: block; font-weight: 400; opacity: 0.88; margin-top: 2px; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    animation: fadeUp 0.7s 0.35s both;
+  }
+  .location-bar {
+    background: var(--deep);
+    color: #FFB300;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .location-bar svg { flex-shrink: 0; }
+
+  @keyframes fadeUp { from { transform: translateY(18px); opacity:0 } to { transform:translateY(0); opacity:1 } }
+
+  /* ── CATEGORY TABS ── */
+  .tabs-wrap {
+    overflow-x: auto;
+    padding: 14px 16px 0;
+    scrollbar-width: none;
+    animation: fadeUp 0.7s 0.5s both;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    width: max-content;
+  }
+  .tab {
+    padding: 9px 18px;
+    border-radius: 20px;
+    border: 1.5px solid #e0c9b0;
+    background: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #7a4a1e;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.22s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tab.active, .tab:hover {
+    background: var(--saffron);
+    color: #fff;
+    border-color: var(--saffron);
+    box-shadow: 0 2px 10px rgba(255,107,0,0.28);
+  }
+
+  /* ── MENU SECTIONS ── */
+  .menu-body { padding: 16px; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--saffron);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, #FFB300 0%, transparent 100%);
+    border-radius: 2px;
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 360px) {
+    .items-grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 600px) {
+    .items-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  }
+
+  .item-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px 12px 16px;
+    box-shadow: var(--shadow);
+    border: 1.5px solid #f5e6d4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: cardIn 0.4s ease both;
+    position: relative;
+    overflow: hidden;
+    min-height: 130px;
+    justify-content: center;
+  }
+  .item-card:active { transform: scale(0.97); }
+  .item-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,107,0,0.18); }
+  @keyframes cardIn { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:translateY(0) } }
+
+  .item-emoji {
+    font-size: 2.4rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+  }
+  .item-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--deep);
+    line-height: 1.35;
+    padding: 0 4px;
+  }
+  .item-price {
+    display: inline-block;
+    background: #2D7A3A;
+    color: #fff;
+    border-radius: 6px;
+    padding: 4px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .item-price sup { font-size: 0.7rem; }
+
+  .bestseller-badge {
+    position: absolute;
+    top: 8px; right: -2px;
+    background: var(--gold);
+    color: var(--deep);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 4px 0 0 4px;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--deep);
+    color: #ccc;
+    text-align: center;
+    padding: 24px 20px;
+    margin-top: 24px;
+  }
+  .footer .shop-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .footer p { font-size: 0.78rem; line-height: 1.8; }
+  .footer a { color: var(--saffron); text-decoration: none; }
+  .footer .divider { border: none; border-top: 1px solid #333; margin: 12px 0; }
+  .hours-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,179,0,0.12);
+    border: 1px solid rgba(255,179,0,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+
+  /* ── FLOATING CALL ── */
+  .fab {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    background: var(--green);
+    color: #fff;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 18px rgba(45,122,58,0.4);
+    text-decoration: none;
+    z-index: 100;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 4px 18px rgba(45,122,58,0.4); }
+    50% { box-shadow: 0 4px 28px rgba(45,122,58,0.7), 0 0 0 8px rgba(45,122,58,0.1); }
+  }
+</style>
 </head>
-
 <body>
 
-<header>
-    <h1>🌮 M M Chats Center</h1>
-    <div class="info">
-        <div><span class="highlight">Opening Time:</span> 5:00 PM – 10:00 PM</div>
-        <div><span class="highlight">Contact:</span> 8618752739</div>
-    </div>
-</header>
-
-<h2 style="margin-bottom:25px;">📋 Digital Menu</h2>
-
-<div class="menu" id="menu"></div>
-
-<div class="cart">
-    <h2>zomato and swiggy available</h2>
-    <h3>🛒 Your Order</h3>
-    <div id="cartItems"></div>
-    <div class="total">Total: ₹<span id="total">0</span></div>
+<!-- HEADER -->
+<div class="hero">
+  <div class="logo-circle">🍽️</div>
+  <h1>MM Chats Center<span>MM ಚಾಟ್ಸ್ ಸೆಂಟರ್</span></h1>
+  <div class="hero-tag">✦ Fresh · Tasty · Affordable ✦</div>
 </div>
 
-<script src="script.js"></script>
+<div class="location-bar">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+  Global Village Back Gate, Kengeri, Bangalore
+</div>
+
+<!-- CATEGORY TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <div class="tab active" onclick="showSection('all', this)">🍽 All</div>
+    <div class="tab" onclick="showSection('bhel', this)">🥗 Bhelpuri</div>
+    <div class="tab" onclick="showSection('sevpuri', this)">🫓 Sevpuri</div>
+    <div class="tab" onclick="showSection('slice', this)">🍍 Slices</div>
+    <div class="tab" onclick="showSection('masala', this)">🌶 Masala</div>
+    <div class="tab" onclick="showSection('special', this)">⭐ Special</div>
+  </div>
+</div>
+
+<!-- MENU BODY -->
+<div class="menu-body">
+
+  <!-- ALL -->
+  <div class="section active" id="sec-all">
+    <div class="section-title">🍽 Full Menu</div>
+    <div class="items-grid" id="all-grid"></div>
+  </div>
+
+  <!-- BHELPURI -->
+  <div class="section" id="sec-bhel">
+    <div class="section-title">🥗 Bhelpuri</div>
+    <div class="items-grid" id="bhel-grid"></div>
+  </div>
+
+  <!-- SEVPURI -->
+  <div class="section" id="sec-sevpuri">
+    <div class="section-title">🫓 Sevpuri</div>
+    <div class="items-grid" id="sevpuri-grid"></div>
+  </div>
+
+  <!-- SLICES -->
+  <div class="section" id="sec-slice">
+    <div class="section-title">🍍 Slices</div>
+    <div class="items-grid" id="slice-grid"></div>
+  </div>
+
+  <!-- MASALA -->
+  <div class="section" id="sec-masala">
+    <div class="section-title">🌶 Masala Items</div>
+    <div class="items-grid" id="masala-grid"></div>
+  </div>
+
+  <!-- SPECIAL -->
+  <div class="section" id="sec-special">
+    <div class="section-title">⭐ Special Items</div>
+    <div class="items-grid" id="special-grid"></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="shop-name">MM Chats Center</div>
+  <p>Global Village Back Gate, Kengeri, Bangalore</p>
+  <p>📞 <a href="tel:8618752739">86187 52739</a></p>
+  <div class="hours-badge">🕐 Open 4:30 PM – 10:30 PM</div>
+  <hr class="divider">
+  <p style="font-size:0.7rem; color:#666;">Prices are inclusive of all charges · Freshly made on order</p>
+</div>
+
+<!-- FLOATING CALL BUTTON -->
+<a class="fab" href="tel:8618752739" title="Call Us">📞</a>
+
+<script>
+const ALL_ITEMS = [
+  // BHELPURI
+  { name:"Belpuri",             price:40, emoji:"🥗", cat:"bhel",    star:true  },
+  { name:"Special Bhelpuri",    price:50, emoji:"🥗", cat:"bhel",    star:true  },
+  { name:"Mango Bhelpuri",      price:50, emoji:"🥭", cat:"bhel"               },
+  { name:"Pineapple Bhelpuri",  price:50, emoji:"🍍", cat:"bhel"               },
+  // SEVPURI
+  { name:"Sevpuri",             price:40, emoji:"🫓", cat:"sevpuri", star:true  },
+  { name:"Mango Sevpuri",       price:50, emoji:"🥭", cat:"sevpuri"            },
+  { name:"Pineapple Sevpuri",   price:50, emoji:"🍍", cat:"sevpuri"            },
+  { name:"Tomato Sevpuri",      price:50, emoji:"🍅", cat:"sevpuri"            },
+  { name:"Cucumber Sevpuri",    price:50, emoji:"🥒", cat:"sevpuri"            },
+  { name:"Dahi Tikki Puri",     price:50, emoji:"🍶", cat:"sevpuri", star:true  },
+  // SLICES
+  { name:"Tomato Slice",        price:40, emoji:"🍅", cat:"slice"              },
+  { name:"Cucumber Slice",      price:40, emoji:"🥒", cat:"slice"              },
+  { name:"Pineapple Slice",     price:40, emoji:"🍍", cat:"slice"              },
+  // MASALA
+  { name:"Bhoti Masala",        price:40, emoji:"🌶", cat:"masala"             },
+  { name:"Chips Masala",        price:50, emoji:"🍟", cat:"masala"             },
+  { name:"Time Pass Masala",    price:40, emoji:"😋", cat:"masala"             },
+  { name:"Sprouts Masala",      price:50, emoji:"🌱", cat:"masala"             },
+  { name:"Banana Stem",         price:40, emoji:"🍌", cat:"masala"             },
+  { name:"Pineapple Masala",    price:50, emoji:"🍍", cat:"masala"             },
+  { name:"Cucumber Masala",     price:40, emoji:"🥒", cat:"masala"             },
+  { name:"Cucumber+Pineapple",  price:50, emoji:"🍍", cat:"masala"             },
+  { name:"All Mix Masala",      price:50, emoji:"🎉", cat:"masala", star:true   },
+  { name:"Sprouts+Cucumber",    price:50, emoji:"🌱", cat:"masala"             },
+  { name:"Kodbele Masala",      price:50, emoji:"🫘", cat:"masala"             },
+  { name:"Nippattu Masala",     price:40, emoji:"🥨", cat:"masala"             },
+  // SPECIAL
+  { name:"Congress Masala",     price:60, emoji:"⭐", cat:"special", star:true  },
+  { name:"Moong Dal Masala",    price:60, emoji:"🫘", cat:"special", star:true  },
+];
+
+function makeCard(item, delay = 0) {
+  const card = document.createElement('div');
+  card.className = 'item-card';
+  card.style.animationDelay = delay + 'ms';
+  card.innerHTML = `
+    ${item.star ? '<div class="bestseller-badge">⭐ Popular</div>' : ''}
+    <div class="item-emoji">${item.emoji}</div>
+    <div class="item-name">${item.name}</div>
+    <div class="item-price"><sup>₹</sup>${item.price}</div>
+  `;
+  return card;
+}
+
+function renderGrid(id, items) {
+  const grid = document.getElementById(id);
+  if (!grid) return;
+  grid.innerHTML = '';
+  items.forEach((item, i) => grid.appendChild(makeCard(item, i * 40)));
+}
+
+// Populate grids
+renderGrid('all-grid', ALL_ITEMS);
+['bhel','sevpuri','slice','masala','special'].forEach(cat => {
+  renderGrid(cat + '-grid', ALL_ITEMS.filter(i => i.cat === cat));
+});
+
+function showSection(cat, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + cat).classList.add('active');
+  el.classList.add('active');
+  // Re-animate
+  document.querySelectorAll('#sec-' + cat + ' .item-card').forEach((c, i) => {
+    c.style.animation = 'none';
+    c.offsetHeight;
+    c.style.animation = '';
+    c.style.animationDelay = (i * 40) + 'ms';
+  });
+}
+</script>
 </body>
 </html>
